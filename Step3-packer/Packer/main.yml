@@ -1,0 +1,9 @@
+- hosts: sonarqube
+  become: true
+  gather_facts: true
+
+  roles:
+    - java
+    - postgresql
+    - sysctl
+    - sonarqube
