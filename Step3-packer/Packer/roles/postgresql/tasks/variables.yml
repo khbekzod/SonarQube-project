@@ -1,0 +1,10 @@
+# Database (PostgreSQL)
+# postgresql_packages:
+#   - postgresql
+#   - postgresql-contrib
+postgresql_service: postgresql
+postgresql_host: "localhost"
+postgresql_port: 5432
+postgres_sonar_db: "sonarqube"
+postgres_sonar_user: "sonar"
+postgres_sonar_password: "ChangeMe_Strong!"

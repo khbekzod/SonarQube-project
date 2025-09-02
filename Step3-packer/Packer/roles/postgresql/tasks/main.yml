@@ -8,21 +8,23 @@
 
 - name: Install PostgreSQL
   ansible.builtin.apt:
-    name: "{{ postgresql_packages }}"
+    name: 
+      - postgresql
+      - postgresql-contrib
     state: present
     update_cache: true
 
 - name: Ensure PostgreSQL started
   ansible.builtin.service:
-    name: "{{ postgresql_service }}"
+    name: postgresql
     state: started
     enabled: true
 
 # Требуется коллекция: ansible-galaxy collection install community.postgresql
 - name: Create sonar DB user
   community.postgresql.postgresql_user:
-    name: "{{ postgres_sonar_user }}"
-    password: "{{ postgres_sonar_password }}"
+    name: "sonar"
+    password: "ChangeMe_Strong!"
     encrypted: true
   become: true
   become_user: postgres
@@ -30,7 +32,7 @@
 
 - name: Create sonarqube database
   community.postgresql.postgresql_db:
-    name: "{{ postgres_sonar_db }}"
-    owner: "{{ postgres_sonar_user }}"
+    name: "sonarqube"
+    owner: "sonar"
   become: true
   become_user: postgres
